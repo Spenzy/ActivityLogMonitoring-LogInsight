@@ -1,0 +1,7 @@
+{
+  "name": "ALM-LogInsight",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
