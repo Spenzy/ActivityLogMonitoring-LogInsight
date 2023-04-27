@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   menuItems: MenuItem[] = [];
   @ViewChild('sidebarMenu') sidebarMenu: ElementRef;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router) { 
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
 
@@ -55,7 +55,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // activate menu item
     new MetisMenu(this.sidebarMenu.nativeElement);
-    
+
     this._activateMenuDropdown();
   }
 
@@ -73,16 +73,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       this.document.body.classList.toggle('sidebar-open');
     }
   }
-
-
-  /**
-   * Toggle settings-sidebar 
-   */
-  toggleSettingsSidebar(e: Event) {
-    e.preventDefault();
-    this.document.body.classList.toggle('settings-open');
-  }
-
 
   /**
    * Open sidebar when hover (in folded folded state)
@@ -139,7 +129,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   resetMenuItems() {
 
     const links = document.getElementsByClassName('nav-link-ref');
-    
+
     for (let i = 0; i < links.length; i++) {
       const menuItemEl = links[i];
       menuItemEl.classList.remove('mm-active');
@@ -148,7 +138,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       if (parentEl) {
           parentEl.classList.remove('mm-active');
           const parent2El = parentEl.parentElement;
-          
+
           if (parent2El) {
             parent2El.classList.remove('mm-show');
           }
@@ -188,13 +178,13 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     const links: any = document.getElementsByClassName('nav-link-ref');
 
     let menuItemEl = null;
-    
+
     for (let i = 0; i < links.length; i++) {
       // tslint:disable-next-line: no-string-literal
         if (window.location.pathname === links[i]['pathname']) {
-          
+
             menuItemEl = links[i];
-            
+
             break;
         }
     }

@@ -9,20 +9,20 @@
         </div>
         <div class="col-md-8 ps-md-0">
           <div class="auth-form-wrapper px-4 py-5">
-            <a routerLink="." class="nobleui-logo logo-light d-block mb-2">Noble<span>UI</span></a>
+            <a routerLink="." class="nobleui-logo logo-light d-block mb-2"><span>Log</span>Insight</a>
             <h5 class="text-muted fw-normal mb-4">Create a free account.</h5>
             <form class="forms-sample">
               <div class="mb-3">
                 <label for="exampleInputUsername1" class="form-label">Username</label>
-                <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username">
+                <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username" #userName [required]>
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" #userEmail [required]>
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" autocomplete="current-password" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputPassword1" autocomplete="current-password" placeholder="Password" #userPwd [required]>
               </div>
               <div class="form-check mb-3">
                 <input type="checkbox" class="form-check-input" id="authCheck">
@@ -31,7 +31,7 @@
                 </label>
               </div>
               <div>
-                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onRegister($event)">Sign up</button>
+                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign up</button>
                 <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
                   <i class="feather icon-twitter btn-icon-prepend"></i>
                   Sign up with twitter

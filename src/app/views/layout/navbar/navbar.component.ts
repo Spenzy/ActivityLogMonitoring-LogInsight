@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +11,10 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(
-    @Inject(DOCUMENT) private document: Document, 
+    @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -26,16 +28,5 @@ export class NavbarComponent implements OnInit {
     this.document.body.classList.toggle('sidebar-open');
   }
 
-  /**
-   * Logout
-   */
-  onLogout(e: Event) {
-    e.preventDefault();
-    localStorage.removeItem('isLoggedin');
-
-    if (!localStorage.getItem('isLoggedin')) {
-      this.router.navigate(['/auth/login']);
-    }
-  }
 
 }

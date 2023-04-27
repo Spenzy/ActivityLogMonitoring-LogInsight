@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -8,17 +9,9 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
-  }
-
-  onRegister(e: Event) {
-    e.preventDefault();
-    localStorage.setItem('isLoggedin', 'true');
-    if (localStorage.getItem('isLoggedin')) {
-      this.router.navigate(['/']);
-    }
   }
 
 }
