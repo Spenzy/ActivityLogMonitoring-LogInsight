@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,11 +20,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import {firebaseConfig} from "../environments/environment";
 import { AuthService } from "./services/auth.service";
+import { TableauVizComponent } from './views/pages/tableau-viz/tableau-viz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
+    TableauVizComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { AuthService } from "./services/auth.service";
       }
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
