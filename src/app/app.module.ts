@@ -20,13 +20,11 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import {firebaseConfig} from "../environments/environment";
 import { AuthService } from "./services/auth.service";
-import { TableauVizComponent } from './views/pages/tableau-viz/tableau-viz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorPageComponent,
-    TableauVizComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +53,6 @@ import { TableauVizComponent } from './views/pages/tableau-viz/tableau-viz.compo
     }
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

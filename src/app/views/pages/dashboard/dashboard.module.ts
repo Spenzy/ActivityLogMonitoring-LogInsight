@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -8,8 +8,8 @@ import { NgbDropdownModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstr
 
 // Ng-ApexCharts
 import { NgApexchartsModule } from "ng-apexcharts";
-
 import { DashboardComponent } from './dashboard.component';
+import { EmbedTableauVizComponent } from './embed-tableau-viz/embed-tableau-viz.component';
 
 const routes: Routes = [
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, EmbedTableauVizComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -27,7 +27,8 @@ const routes: Routes = [
     FeatherIconModule,
     NgbDropdownModule,
     NgbDatepickerModule,
-    NgApexchartsModule
-  ]
+    NgApexchartsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DashboardModule { }
