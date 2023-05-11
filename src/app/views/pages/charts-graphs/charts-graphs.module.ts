@@ -11,6 +11,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ChartsGraphsComponent } from './charts-graphs.component';
 import { ApexchartsComponent } from './apexcharts/apexcharts.component';
 import { ChartjsComponent } from './chartjs/chartjs.component';
+import { SentimentalAnalysisComponent } from './sentimental-analysis/sentimental-analysis.component';
 
 const routes: Routes = [
   {
@@ -29,13 +30,17 @@ const routes: Routes = [
       {
         path: 'chartjs',
         component: ChartjsComponent
+      },
+      {
+        path: 'SentimentalAnalysis',
+        component: SentimentalAnalysisComponent
       }
     ]
   }
 ]
 
 @NgModule({
-  declarations: [ ChartsGraphsComponent, ApexchartsComponent, ChartjsComponent],
+  declarations: [ ChartsGraphsComponent, ApexchartsComponent, ChartjsComponent, SentimentalAnalysisComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

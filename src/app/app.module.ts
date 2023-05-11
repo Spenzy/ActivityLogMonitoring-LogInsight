@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import {firebaseConfig} from "../environments/environment";
 import { AuthService } from "./services/auth.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AuthService } from "./services/auth.service";
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
   ],
   providers: [
     AuthGuard,

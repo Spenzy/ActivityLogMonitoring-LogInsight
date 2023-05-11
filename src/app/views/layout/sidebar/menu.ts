@@ -237,6 +237,10 @@ export const MENU: MenuItem[] = [
         label: 'ChartJs',
         link: '/charts-graphs/chartjs',
       },
+      {
+        label: 'SentimentalAnalysis',
+        link: '/charts-graphs/SentimentalAnalysis',
+      },
     ]
   },
   {

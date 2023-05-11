@@ -1,0 +1,57 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink=".">Analytics & Predictive models </a></li>
+    <li class="breadcrumb-item active" aria-current="page">Sentimental analysis</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Talend Products Sentimental Analysis</h4>
+        <p class=“text-muted”>Read the for a full list of instructions and other options.</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Sentiment Distribution</h6>
+
+          <apx-chart
+            [series]="donutChartOptions.series"
+            [chart]="donutChartOptions.chart"
+            [colors]="donutChartOptions.colors"
+            [stroke]="donutChartOptions.stroke"
+            [legend]="donutChartOptions.legend"
+            [dataLabels]="donutChartOptions.dataLabels"
+            [labels]="donutChartOptions.labels"
+          ></apx-chart>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">rating by sentiment</h6>
+
+          <apx-chart
+            [series]="barChartOptions.series"
+            [chart]="barChartOptions.chart"
+            [colors]="barChartOptions.colors"
+            [grid]="barChartOptions.grid"
+            [xaxis]="barChartOptions.xaxis"
+            [yaxis]="barChartOptions.yaxis"
+            [plotOptions]="barChartOptions.plotOptions"
+          ></apx-chart>
+
+      </div>
+    </div>
+  </div>
+</div>
