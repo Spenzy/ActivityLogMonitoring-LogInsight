@@ -1,0 +1,98 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink=".">Analytics & Predictive models </a></li>
+    <li class="breadcrumb-item active" aria-current="page">Predictive Models</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Duration & Cluster Prediction</h4>
+        <p class=“text-muted”>Read the for a full list of instructions and other options.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Example</h6>
+
+        <aw-wizard>
+
+        </aw-wizard>
+
+      </div>
+    </div>
+  </div> <!-- col -->
+  <div class="col-md-6 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">With form validation</h6>
+
+        <aw-wizard #durationWizardForm>
+
+          <aw-wizard-step stepTitle="Fill in the parameters">
+            <form (ngSubmit)="formDurationSubmit(dataVolume, nbrComponents)" [formGroup]="validationFormDuration">
+
+              <div class="row mb-3">
+                <label for="dataVolume" class="col-sm-3 col-form-label">Data Volume</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="dataVolume" formControlName="dataVolume"
+                         [ngClass]="{'is-invalid': isFormDurationSubmitted && formDuration.dataVolume.errors}" placeholder="Data Volume" #dataVolume>
+                  <div *ngIf="isFormDurationSubmitted && formDuration.dataVolume.errors?.required" class="invalid-feedback">
+                    Required
+                  </div>
+                  <div *ngIf="isFormDurationSubmitted && formDuration.dataVolume.errors?.min" class="invalid-feedback">
+                    Value should be superior to 0
+                  </div>
+                  <div *ngIf="isFormDurationSubmitted && formDuration.dataVolume.errors?.pattern" class="invalid-feedback">
+                    Value should be a number
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="nbrComponents" class="col-sm-3 col-form-label">Number of Components</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="nbrComponents" formControlName="nbrComponents"
+                         [ngClass]="{'is-invalid': isFormDurationSubmitted && formDuration.nbrComponents.errors}" placeholder="Number of Components" #nbrComponents>
+                  <div *ngIf="isFormDurationSubmitted && formDuration.nbrComponents.errors?.required" class="invalid-feedback">
+                    Required
+                  </div>
+                  <div *ngIf="isFormDurationSubmitted && formDuration.nbrComponents.errors?.min" class="invalid-feedback">
+                    Value should be superior to 0
+                  </div>
+                  <div *ngIf="isFormDurationSubmitted && formDuration.nbrComponents.errors?.pattern" class="invalid-feedback">
+                    Value should be a number
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center mt-2">
+                <button class="btn btn-primary" type="submit" >Continue</button>
+              </div>
+            </form>
+          </aw-wizard-step>
+
+          <aw-wizard-step stepTitle="finish">
+            <div class="text-center">
+              <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
+              <h3 class="text-muted mb-3">{{jobDuration}} ms</h3>
+              <p class="w-75 mx-auto mb-4 text-muted"> Job Duration Prediction through a Neural Network Model</p>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+            </div>
+          </aw-wizard-step>
+
+        </aw-wizard>
+
+      </div>
+    </div>
+  </div> <!-- col -->
+
+</div> <!-- row -->

@@ -11,6 +11,20 @@ export const MENU: MenuItem[] = [
     link: '/dashboard'
   },
   {
+    label: 'Analysis & Prediction',
+    icon: 'pie-chart',
+    subItems: [
+      {
+        label: 'Duration & Cluster Prediction',
+        link: '/charts-graphs/PredictiveModels',
+      },
+      {
+        label: 'SentimentalAnalysis',
+        link: '/charts-graphs/SentimentalAnalysis',
+      },
+    ]
+  },
+  {
     label: 'Web Apps',
     isTitle: true
   },
@@ -236,10 +250,6 @@ export const MENU: MenuItem[] = [
       {
         label: 'ChartJs',
         link: '/charts-graphs/chartjs',
-      },
-      {
-        label: 'SentimentalAnalysis',
-        link: '/charts-graphs/SentimentalAnalysis',
       },
     ]
   },

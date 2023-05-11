@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataMiningAPIService} from "../../../../services/data-mining-api.service";
-import {map} from "rxjs/operators";
+import {count, map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {SentimentalAnalysisData} from "./SentimentalAnalysisData";
 
@@ -14,6 +14,7 @@ export class SentimentalAnalysisComponent implements OnInit {
   //chart init
   public lineChartOptions: any = {};
   public barChartOptions: any = {};
+  public sentimentRateBarChartOptions: any = {};
   public areaChartOptions: any = {};
   public mixedChartOptions: any = {};
   public donutChartOptions: any = {};
@@ -54,6 +55,8 @@ export class SentimentalAnalysisComponent implements OnInit {
       error: (error: any) => console.log(error)
     });
 
+
+
     // Some RTL fixes.
     if (document.querySelector('html')?.getAttribute('dir') === 'rtl') {
       this.addRtlOptions();
@@ -74,6 +77,34 @@ export class SentimentalAnalysisComponent implements OnInit {
       })
     );
   }
+
+  public countSentimentRateAvg(data: Observable<SentimentalAnalysisData[]>): Observable<{ [key: string]: number }> {
+    return data.pipe(
+      map(data => {
+        let acc =  data.reduce((acc: any, curr) => {
+          let content: any;
+          if (curr.Sentiment_Category in acc) {
+            content[curr.Sentiment_Category] = {
+              total: content[curr.Sentiment_Category].total + curr.Rate,
+              count: content[curr.Sentiment_Category].count++
+            }
+          } else {
+            content[curr.Sentiment_Category] = {
+              label: curr.Sentiment_Category,
+              total: curr.Rate,
+              count: 1
+            }
+          }
+          return acc;
+        }, {});
+          let content:any;
+          acc.foreach((category:any) => content[category.label] = category.total/category.content)
+          return content;
+      }
+      )
+    );
+  }
+
 
   //For RTL
   addRtlOptions() {
@@ -139,7 +170,7 @@ function getDonutChartOptions(obj: any, data: any) {
 /**
  * Bar chart options
  */
-function getBarChartOptions(obj: any) {
+function getBarChartOptions(obj: any, data: any) {
   return {
     series: [{
       name: 'sales',
