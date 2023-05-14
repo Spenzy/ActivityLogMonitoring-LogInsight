@@ -10,11 +10,21 @@ import { NgbDropdownModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstr
 import { NgApexchartsModule } from "ng-apexcharts";
 import { DashboardComponent } from './dashboard.component';
 import { EmbedTableauVizComponent } from './embed-tableau-viz/embed-tableau-viz.component';
+const vizURLs = [
+  "https://public.tableau.com/views/Classeur1_16802748488610/DurationDashboard?:language=en-US&:display_count=n&:origin=viz_share_link",
+  "https://public.tableau.com/views/Classeur1_16802748488610/LogsDashboard?:language=en-US&:display_count=n&:origin=viz_share_link"
+]
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent
+    component: DashboardComponent,
+    data: { vizURL: vizURLs[0] }
+  },
+  {
+    path: 'logs',
+    component: DashboardComponent,
+    data: { vizURL: vizURLs[1] }
   }
 ]
 

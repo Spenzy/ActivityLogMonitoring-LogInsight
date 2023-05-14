@@ -10,8 +10,8 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Talend Products Sentimental Analysis</h4>
-        <p class=“text-muted”>Read the for a full list of instructions and other options.</p>
-
+        <p class=“text-muted”>This analysis helps you choose the best Talend products based on users feedbacks and their usage across industries. It analyzes emotions associated with Talend products, so businesses can make informed decisions on how these products can help achieve their goals.</p>
+        <p>[<b>Source :</b> Gartner ]</p>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
   <div class="col-xl-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">rating by sentiment</h6>
+        <h6 class="card-title">Rating by Sentiment</h6>
 
           <apx-chart
             [series]="sentimentRateBarChartOptions.series"
@@ -50,6 +50,84 @@
             [yaxis]="sentimentRateBarChartOptions.yaxis"
             [plotOptions]="sentimentRateBarChartOptions.plotOptions"
           ></apx-chart>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Top 10 Industries by Sentiment</h6>
+
+        <apx-chart
+          [series]="sentimentByIndustryBarChartOptions.series"
+          [chart]="sentimentByIndustryBarChartOptions.chart"
+          [colors]="sentimentByIndustryBarChartOptions.colors"
+          [grid]="sentimentByIndustryBarChartOptions.grid"
+          [xaxis]="sentimentByIndustryBarChartOptions.xaxis"
+          [yaxis]="sentimentByIndustryBarChartOptions.yaxis"
+          [plotOptions]="sentimentByIndustryBarChartOptions.plotOptions"
+        ></apx-chart>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Sentiment by Top 10 Industries</h6>
+
+        <apx-chart
+          [series]="industryBySentimentBarChartOptions.series"
+          [chart]="industryBySentimentBarChartOptions.chart"
+          [colors]="industryBySentimentBarChartOptions.colors"
+          [grid]="industryBySentimentBarChartOptions.grid"
+          [xaxis]="industryBySentimentBarChartOptions.xaxis"
+          [yaxis]="industryBySentimentBarChartOptions.yaxis"
+          [plotOptions]="industryBySentimentBarChartOptions.plotOptions"
+        ></apx-chart>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Top 5 Products By Sentiment</h6>
+
+        <apx-chart
+          [series]="radialBarChartOptions.series"
+          [chart]="radialBarChartOptions.chart"
+          [colors]="radialBarChartOptions.colors"
+          [grid]="radialBarChartOptions.grid"
+          [plotOptions]="radialBarChartOptions.plotOptions"
+          [labels]="radialBarChartOptions.labels"
+          [legend]="radialBarChartOptions.legend"
+        ></apx-chart>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Product by Sentiment</h6>
+
+        <apx-chart
+          [series]="productBySentimentBarChartOptions.series"
+          [chart]="productBySentimentBarChartOptions.chart"
+          [colors]="productBySentimentBarChartOptions.colors"
+          [grid]="productBySentimentBarChartOptions.grid"
+          [xaxis]="productBySentimentBarChartOptions.xaxis"
+          [yaxis]="productBySentimentBarChartOptions.yaxis"
+          [plotOptions]="productBySentimentBarChartOptions.plotOptions"
+        ></apx-chart>
 
       </div>
     </div>

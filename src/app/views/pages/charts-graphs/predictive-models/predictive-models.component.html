@@ -9,41 +9,120 @@
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Duration & Cluster Prediction</h4>
-        <p class=“text-muted”>Read the for a full list of instructions and other options.</p>
+        <h4 class="card-title">Duration Prediction & Job Classification</h4>
+        <p class=“text-muted”>Predict job execution time based on the data volume and component number. As well as segmenting jobs into three categories and classifying them accordingly.
+        </p>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-6 grid-margin">
+  <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">Example</h6>
+        <h6 class="card-title">Job Classification</h6>
 
-        <aw-wizard>
+        <aw-wizard #clusterWizardForm>
+          <aw-wizard-step stepTitle="Fill in the parameters">
+            <form (ngSubmit)="formClusterSubmit()" [formGroup]="validationFormCluster">
 
+              <div class="row mb-3">
+                <label for="clusterDataVolume" class="col-sm-3 col-form-label">Data Volume</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="clusterDataVolume" formControlName="dataVolume"
+                         [(ngModel)]="dataVolume"
+                         [ngClass]="{'is-invalid': isFormClusterSubmitted && formCluster.dataVolume.errors}" placeholder="Data Volume">
+                  <div *ngIf="isFormClusterSubmitted && formCluster.dataVolume.errors?.required" class="invalid-feedback">
+                    Required
+                  </div>
+                  <div *ngIf="isFormClusterSubmitted && formCluster.dataVolume.errors?.min" class="invalid-feedback">
+                    Value should be superior to 0
+                  </div>
+                  <div *ngIf="isFormClusterSubmitted && formCluster.dataVolume.errors?.pattern" class="invalid-feedback">
+                    Value should be a number
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="clusterNbrComponents" class="col-sm-3 col-form-label">Number of Components</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="clusterNbrComponents" formControlName="nbrComponents"
+                         [(ngModel)]="nbrComponents"
+                         [ngClass]="{'is-invalid': isFormClusterSubmitted && formCluster.nbrComponents.errors}" placeholder="Number of Components">
+                  <div *ngIf="isFormClusterSubmitted && formCluster.nbrComponents.errors?.required" class="invalid-feedback">
+                    Required
+                  </div>
+                  <div *ngIf="isFormClusterSubmitted && formCluster.nbrComponents.errors?.min" class="invalid-feedback">
+                    Value should be superior to 0
+                  </div>
+                  <div *ngIf="isFormClusterSubmitted && formCluster.nbrComponents.errors?.pattern" class="invalid-feedback">
+                    Value should be a number
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="clusterJobDuration" class="col-sm-3 col-form-label">Job Duration</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="clusterJobDuration" formControlName="jobDuration"
+                         [(ngModel)]="jobDuration"
+                         [ngClass]="{'is-invalid': isFormClusterSubmitted && formCluster.jobDuration.errors}" placeholder="Number of Components">
+                  <div *ngIf="isFormClusterSubmitted && formCluster.jobDuration.errors?.required" class="invalid-feedback">
+                    Required
+                  </div>
+                  <div *ngIf="isFormClusterSubmitted && formCluster.jobDuration.errors?.min" class="invalid-feedback">
+                    Value should be superior to 0
+                  </div>
+                  <div *ngIf="isFormClusterSubmitted && formCluster.jobDuration.errors?.pattern" class="invalid-feedback">
+                    Value should be a number
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center mt-2">
+                <button class="btn btn-primary" type="submit" >Continue</button>
+              </div>
+            </form>
+          </aw-wizard-step>
+
+          <aw-wizard-step stepTitle="finish">
+            <div class="text-center">
+              <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
+              <h3 class="text-muted mb-3">Category : {{predictedCluster}}</h3>
+              <ul class="list-group">
+                <li class="list-group-item"><b>Simple:</b> This job type is the best resource wise and the least problematic. </li>
+                <li class="list-group-item"><b>Moderate:</b> This job isn't resource intensive and has a moderate number of logs. </li>
+                <li class="list-group-item"><b>Simple:</b> This job is extremely resource intensive and the most problematic. </li>
+              </ul>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+            </div>
+          </aw-wizard-step>
         </aw-wizard>
 
       </div>
     </div>
   </div> <!-- col -->
+
   <div class="col-md-6 grid-margin">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">With form validation</h6>
+        <h6 class="card-title">Duration Prediction</h6>
 
         <aw-wizard #durationWizardForm>
 
           <aw-wizard-step stepTitle="Fill in the parameters">
-            <form (ngSubmit)="formDurationSubmit(dataVolume, nbrComponents)" [formGroup]="validationFormDuration">
+            <form (ngSubmit)="formDurationSubmit()" [formGroup]="validationFormDuration">
 
               <div class="row mb-3">
                 <label for="dataVolume" class="col-sm-3 col-form-label">Data Volume</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="dataVolume" formControlName="dataVolume"
-                         [ngClass]="{'is-invalid': isFormDurationSubmitted && formDuration.dataVolume.errors}" placeholder="Data Volume" #dataVolume>
+                         [(ngModel)]="dataVolume"
+                         [ngClass]="{'is-invalid': isFormDurationSubmitted && formDuration.dataVolume.errors}" placeholder="Data Volume">
                   <div *ngIf="isFormDurationSubmitted && formDuration.dataVolume.errors?.required" class="invalid-feedback">
                     Required
                   </div>
@@ -60,7 +139,8 @@
                 <label for="nbrComponents" class="col-sm-3 col-form-label">Number of Components</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="nbrComponents" formControlName="nbrComponents"
-                         [ngClass]="{'is-invalid': isFormDurationSubmitted && formDuration.nbrComponents.errors}" placeholder="Number of Components" #nbrComponents>
+                         [(ngModel)]="nbrComponents"
+                         [ngClass]="{'is-invalid': isFormDurationSubmitted && formDuration.nbrComponents.errors}" placeholder="Number of Components">
                   <div *ngIf="isFormDurationSubmitted && formDuration.nbrComponents.errors?.required" class="invalid-feedback">
                     Required
                   </div>
@@ -81,7 +161,7 @@
           <aw-wizard-step stepTitle="finish">
             <div class="text-center">
               <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
-              <h3 class="text-muted mb-3">{{jobDuration}} ms</h3>
+              <h3 class="text-muted mb-3">{{jobDuration | number}} ms</h3>
               <p class="w-75 mx-auto mb-4 text-muted"> Job Duration Prediction through a Neural Network Model</p>
             </div>
             <div class="d-flex justify-content-center mt-2">
@@ -96,3 +176,46 @@
   </div> <!-- col -->
 
 </div> <!-- row -->
+  <div class="row">
+    <div class="col-xl-6 grid-margin grid-margin-xl-0 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Job Duration by Data Volume (100 values sample)</h6>
+
+          <apx-chart
+            [series]="durationVolumeScatterChartOptions.series"
+            [chart]="durationVolumeScatterChartOptions.chart"
+            [colors]="durationVolumeScatterChartOptions.colors"
+            [grid]="durationVolumeScatterChartOptions.grid"
+            [markers]="durationVolumeScatterChartOptions.markers"
+            [legend]="durationVolumeScatterChartOptions.legend"
+            [xaxis]="durationVolumeScatterChartOptions.xaxis"
+            [yaxis]="durationVolumeScatterChartOptions.yaxis"
+          ></apx-chart>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Job Duration by Number of Components (100 values sample)</h6>
+
+          <apx-chart
+            [series]="durationComponentScatterChartOptions.series"
+            [chart]="durationComponentScatterChartOptions.chart"
+            [colors]="durationComponentScatterChartOptions.colors"
+            [grid]="durationComponentScatterChartOptions.grid"
+            [markers]="durationComponentScatterChartOptions.markers"
+            [legend]="durationComponentScatterChartOptions.legend"
+            [xaxis]="durationComponentScatterChartOptions.xaxis"
+            [yaxis]="durationComponentScatterChartOptions.yaxis"
+          ></apx-chart>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+

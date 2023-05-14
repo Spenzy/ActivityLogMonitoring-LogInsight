@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import {AuthService} from "../../../services/auth.service";
+import firebase from "firebase/compat";
+import User = firebase.User;
 
 @Component({
   selector: 'app-navbar',
@@ -10,14 +12,21 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class NavbarComponent implements OnInit {
 
+  user: User;
+
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private router: Router,
     public authService: AuthService
-  ) { }
+  ) {
+    this.user = JSON.parse(localStorage.getItem('user')!);
+
+  }
 
   ngOnInit(): void {
+
   }
 
   /**

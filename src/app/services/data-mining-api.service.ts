@@ -12,20 +12,25 @@ export class DataMiningAPIService {
   private baseUrl = environment.dataMiningAPI; // replace with your Flask web application URL
 
   constructor(private http: HttpClient) {
-    console.log(this.http.post<any>(`${this.baseUrl}/`, {}))
   }
 
   public getSentimentalAnalysis(): Observable<SentimentalAnalysisData[]> {
     return this.http.post<any>(`${this.baseUrl}/SentimentalAnalysis/`, {});
   }
 
+  public getCAHSegmentation(): Observable<any[]> {
+    return this.http.post<any>(`${this.baseUrl}/CAHSegmentation/`, {});
+  }
+
   public predictCluster(dataVolume: number, jobDuration: number, nbrComponent: number): Observable<any> {
-    const payload = { dataVolume, jobDuration, nbrComponent };
+    const payload = { "dataVolume": dataVolume, "jobDuration":jobDuration, "nbrComponent":nbrComponent };
+
     return this.http.post<any>(`${this.baseUrl}/PredictCluster/`, payload);
   }
 
   public predictDuration(dataVolume: number, nbrComponent: number): Observable<any> {
-    const payload = { dataVolume, nbrComponent };
+    const payload = { "dataVolume": dataVolume, "nbrComponent":nbrComponent };
+    console.log(payload)
     return this.http.post<any>(`${this.baseUrl}/PredictDuration/`, payload);
   }
 }
