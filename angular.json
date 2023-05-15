@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "www",
             "allowedCommonJsDependencies": [
               "fast-deep-equal",
               "sweetalert2",
@@ -125,12 +125,56 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "LogInsight-ALM:build:production",
+            "firebaseProject": "activitylogmonitoring",
+            "firebaseHostingSite": "activitylogmonitoring"
+          }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "LogInsight-ALM:ionic-cordova-build",
+            "devServerTarget": "LogInsight-ALM:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "LogInsight-ALM:ionic-cordova-build:production",
+              "devServerTarget": "LogInsight-ALM:serve:production"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "LogInsight-ALM:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "LogInsight-ALM:build:production"
+            }
           }
         }
       }

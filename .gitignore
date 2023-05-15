@@ -1,1 +1,9 @@
 node_modules
+.angular
+.git
+.idea
+.vscode
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

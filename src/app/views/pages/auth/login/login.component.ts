@@ -9,13 +9,9 @@ import {AuthService} from "../../../../services/auth.service";
 })
 export class LoginComponent implements OnInit {
 
-  returnUrl: any;
-
   constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
 }

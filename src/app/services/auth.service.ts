@@ -34,11 +34,9 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user);
+        this.SetUserData(result.user).then(r => console.log(r));
         this.afAuth.authState.subscribe((user) => {
-          if (user) {
             this.router.navigate(['dashboard']);
-          }
         });
       })
       .catch((error) => {
@@ -52,8 +50,8 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
-        this.SendVerificationMail();
-        this.SetUserData(result.user);
+        this.SendVerificationMail().then(r => console.log(r));
+        this.SetUserData(result.user).then(r => console.log(r));
       })
       .catch((error) => {
         window.alert(error.message);
@@ -64,7 +62,7 @@ export class AuthService {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['verify-email-address']);
+        this.router.navigate(['verify-email-address']).then(r => console.log(r));
       });
   }
   // Reset Forggot password
@@ -87,7 +85,7 @@ export class AuthService {
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['dashboard']).then(r => console.log(r));
     });
   }
   // Auth logic to run auth providers
@@ -95,8 +93,8 @@ export class AuthService {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['dashboard']);
-        this.SetUserData(result.user);
+        this.router.navigate(['/']).then(r => console.log(r));
+        this.SetUserData(result.user).then(r => console.log(r));
       })
       .catch((error) => {
         window.alert(error);
@@ -124,7 +122,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth/login']).then(r => console.log(r));
     });
   }
 }

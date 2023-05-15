@@ -21,6 +21,7 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import {firebaseConfig} from "../environments/environment";
 import { AuthService } from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {HttpClientModule} from "@angular/common/http";
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     HttpClientModule,
+    IonicModule.forRoot(),
   ],
   providers: [
     AuthGuard,

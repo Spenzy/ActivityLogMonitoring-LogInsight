@@ -1,5 +1,5 @@
 {
-  "name": "ALM-LogInsight",
+  "name": "LogInsight",
   "integrations": {
     "capacitor": {}
   },

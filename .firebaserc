@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "activitylogmonitoring"
+  },
+  "targets": {
+    "activitylogmonitoring": {
+      "hosting": {
+        "LogInsight-ALM": [
+          "activitylogmonitoring"
+        ]
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
     <div class="card">
       <div class="row">
         <div class="col-md-4 pe-md-0">
-          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(https://via.placeholder.com/219x452)' }">
+          <div class="auth-side-wrapper" [ngStyle]="{  }">
 
           </div>
         </div>
@@ -32,9 +32,9 @@
               </div>
               <div>
                 <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign up</button>
-                <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                  <i class="feather icon-twitter btn-icon-prepend"></i>
-                  Sign up with twitter
+                <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0" (click)="authService.GoogleAuth()" >
+                  <i class="mdi mdi-google btn-icon-prepend"></i>
+                  Login with Google
                 </button>
               </div>
               <a routerLink="/auth/login" class="d-block mt-3 text-muted">Already a user? Sign in</a>

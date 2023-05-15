@@ -11,7 +11,7 @@ export const MENU: MenuItem[] = [
     subItems: [
       {
         label: 'Jobs Analysis Dashboard',
-        link: '/dashboard',
+        link: '/dashboard/jobs',
       },
       {
         label: 'Logs Analysis Dashboard',

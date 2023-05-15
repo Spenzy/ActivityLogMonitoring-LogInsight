@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  dataMiningAPI: "https://1b76-197-238-89-205.ngrok-free.app"
+  dataMiningAPI: "https://3cfe-197-244-153-157.ngrok-free.app"
 };
 
 export const firebaseConfig = {
