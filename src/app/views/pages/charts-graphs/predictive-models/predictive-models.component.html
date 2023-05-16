@@ -68,7 +68,7 @@
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="clusterJobDuration" formControlName="jobDuration"
                          [(ngModel)]="jobDuration"
-                         [ngClass]="{'is-invalid': isFormClusterSubmitted && formCluster.jobDuration.errors}" placeholder="Number of Components">
+                         [ngClass]="{'is-invalid': isFormClusterSubmitted && formCluster.jobDuration.errors}" placeholder="Job Duration">
                   <div *ngIf="isFormClusterSubmitted && formCluster.jobDuration.errors?.required" class="invalid-feedback">
                     Required
                   </div>
@@ -94,7 +94,7 @@
               <ul class="list-group">
                 <li class="list-group-item"><b>Simple:</b> This job type is the best resource wise and the least problematic. </li>
                 <li class="list-group-item"><b>Moderate:</b> This job isn't resource intensive and has a moderate number of logs. </li>
-                <li class="list-group-item"><b>Simple:</b> This job is extremely resource intensive and the most problematic. </li>
+                <li class="list-group-item"><b>Complex:</b> This job is extremely resource intensive and the most problematic. </li>
               </ul>
             </div>
             <div class="d-flex justify-content-center mt-2">

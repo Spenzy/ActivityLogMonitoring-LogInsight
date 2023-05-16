@@ -16,9 +16,8 @@ const vizURLs = [
 ]
 
 const routes: Routes = [
-  { path: '', redirectTo: 'jobs', pathMatch: 'full' },
   {
-    path: 'jobs',
+    path: '',
     component: DashboardComponent,
     data: { vizURL: vizURLs[0] }
   },

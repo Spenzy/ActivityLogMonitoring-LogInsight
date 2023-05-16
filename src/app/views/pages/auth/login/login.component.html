@@ -14,7 +14,7 @@
             <form class="forms-sample">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" #userName [required]>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" #email [required]>
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -27,7 +27,7 @@
                 </label>
               </div>
               <div>
-                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="authService.SignIn(userName.value, userPassword.value)">Login</button>
+                <button type="button" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="authService.SignIn(email.value, userPassword.value)">Login</button>
                 <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0" (click)="authService.GoogleAuth()" >
                   <i class="mdi mdi-google btn-icon-prepend"></i>
                   Login with Google

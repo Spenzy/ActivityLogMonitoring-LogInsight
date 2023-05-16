@@ -29,20 +29,24 @@ export class AuthService {
       }
     });
   }
-  // Sign in with email/password
+
+// Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user).then(r => console.log(r));
         this.afAuth.authState.subscribe((user) => {
-            this.router.navigate(['dashboard']);
+          if (user) {
+            this.router.navigate(['dashboard']).then(r => console.log(r));
+          }
         });
       })
       .catch((error) => {
         window.alert(error.message);
       });
   }
+
   // Sign up with email/password
   SignUp(email: string, password: string) {
     return this.afAuth
@@ -50,7 +54,6 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
-        this.SendVerificationMail().then(r => console.log(r));
         this.SetUserData(result.user).then(r => console.log(r));
       })
       .catch((error) => {
@@ -80,12 +83,12 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false;
+    return user !== null;
   }
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['dashboard']).then(r => console.log(r));
+      this.router.navigate(['/dashboard']).then(r => console.log(r));
     });
   }
   // Auth logic to run auth providers
@@ -93,13 +96,14 @@ export class AuthService {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['/']).then(r => console.log(r));
         this.SetUserData(result.user).then(r => console.log(r));
+        this.router.navigate(['/dashboard']).then(r => console.log(r));
       })
       .catch((error) => {
         window.alert(error);
       });
   }
+
   /* Setting up user data when sign in with username/password,
   sign up with username/password and sign in with social auth
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
